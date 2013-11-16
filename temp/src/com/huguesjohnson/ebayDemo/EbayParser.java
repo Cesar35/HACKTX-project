@@ -50,8 +50,6 @@ public class EbayParser{
 		ArrayList<Category> categories=new ArrayList<Category>();
 		JSONObject rootObj=new JSONObject(jsonResponse);
 		JSONArray categoryList=rootObj
-			.getJSONArray(this.resources.getString(R.string.ebay_tag_GetCategoryInfoResponse))
-			.getJSONObject(0)
 			.getJSONArray(this.resources.getString(R.string.ebay_tag_CategoryArray))
 			.getJSONObject(0)
 			.getJSONArray(this.resources.getString(R.string.ebay_tag_Category));

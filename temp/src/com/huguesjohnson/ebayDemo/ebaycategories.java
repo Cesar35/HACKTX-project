@@ -43,7 +43,7 @@ public class ebaycategories {
 		return(requestURL.toString());
 	}
 	
-	String getCategories() throws Exception{
+	public String getCategories() throws Exception{
 		String result=null;
 		HttpClient httpClient=new DefaultHttpClient();  
 		HttpGet httpGet=new HttpGet(this.getRequestURL());  

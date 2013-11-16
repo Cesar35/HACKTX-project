@@ -3,4 +3,6 @@
     <string name="searchdialog_caption">Keyword: </string>
     <string name="hello">Hello World, ebayDemoActivity!</string>
     <string name="app_name">ebayDemo</string>
+    <string name="title_activity_categorylist">Categorylist</string>
+    <string name="action_settings">Settings</string>
 </resources>
