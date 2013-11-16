@@ -46,7 +46,7 @@ public class EbayParser{
 		this.resources=context.getResources();
 	}
 	
-	public ArrayList<Category> parseCategorys(String jsonResponse) throws Exception{
+	public ArrayList<Category> parseCategories(String jsonResponse) throws Exception{
 		ArrayList<Category> categories=new ArrayList<Category>();
 		JSONObject rootObj=new JSONObject(jsonResponse);
 		JSONArray categoryList=rootObj
@@ -69,10 +69,11 @@ public class EbayParser{
 	}
 	
 	public Category parseCategory(JSONObject jsonObj) throws JSONException{
-		Category category = new Category();
+		Category category = null;
 		try {
+			String catID = jsonObj.getString(this.resources.getString(R.string.ebay_tag_CategoryID));
+			category = Category.createCategory(catID);
 			category.setCategoryName(jsonObj.getString(this.resources.getString(R.string.ebay_tag_CategoryName)));
-			category.setCategoryID(jsonObj.getString(this.resources.getString(R.string.ebay_tag_CategoryID)));
 			category.setCategoryParentID(jsonObj.getString(this.resources.getString(R.string.ebay_tag_CategoryParentID)));
 			category.setCategoryLevel(jsonObj.getString(this.resources.getString(R.string.ebay_tag_CategoryLevel)));
 			category.setLeafCategory(jsonObj.getString(this.resources.getString(R.string.ebay_tag_LeafCategory)));

@@ -1,18 +1,36 @@
 package com.estumble.backend;
 
+import com.huguesjohnson.ebayDemo.Listing;
+
 import java.util.ArrayList;
 
 import com.huguesjohnson.ebayDemo.Category;
 
+enum ProductLikeStatus
+{
+	NO_ACTION,
+	LIKED,
+	DISLIKED;
+}
+
 public class Product {
-	private boolean liked;
-	private boolean disliked;
-	private String imageURL;
+	private ProductLikeStatus likeStatus;
+	
+	private final Listing listing;
 	
 	private final String name;
 	private final String description;
 	private final ArrayList<Keyword> keywords;
 	private final ArrayList<Category> categories;
+	
+	public Product(Listing listing)
+	{
+		this.name = listing.getTitle();
+		this.description = "GENERIC DESCRIPTION DAWG";
+		this.listing = listing;
+		this.keywords = new ArrayList<Keyword>();
+		this.categories = new ArrayList<Category>();
+	}
 	
 	public Product(String name, String description)
 	{
@@ -20,14 +38,15 @@ public class Product {
 		this.description = description;
 		this.keywords = new ArrayList<Keyword>();
 		this.categories = new ArrayList<Category>();
+		this.listing = null;
 	}
 
 	public String getImageURL() {
-		return imageURL;
+		return this.listing.getImageUrl();
 	}
 
 	public void setImageURL(String imageURL) {
-		this.imageURL = imageURL;
+		this.listing.setImageUrl(imageURL);
 	}
 	
 	public boolean addKeyword(String s)
@@ -45,19 +64,17 @@ public class Product {
 		return categories.add(c);
 	}
 	
-	public static Product parseProduct(String s)
+	public ProductLikeStatus status()
 	{
-		//TODO: Implement method!
-		return new Product("help","something to help you!");
+		return this.likeStatus;
 	}
 	
 	public void like()
 	{
-		if(this.liked)
+		if(this.likeStatus == ProductLikeStatus.LIKED)
 			return;
 		
-		this.liked = true;
-		this.disliked = false;
+		this.likeStatus = ProductLikeStatus.LIKED;
 		for(Keyword k : keywords)
 		{
 			k.increaseStanding();
@@ -66,15 +83,20 @@ public class Product {
 	
 	public void dislike()
 	{
-		if(this.disliked)
+		if(this.likeStatus == ProductLikeStatus.DISLIKED)
 			return;
 		
-		this.disliked = true;
-		this.liked = false;
+		this.likeStatus = ProductLikeStatus.DISLIKED;
+
 		for(Keyword k : keywords)
 		{
 			k.decreaseStanding();
 		}
+	}
+	
+	public Listing getListing()
+	{
+		return this.listing;
 	}
 	
 }
