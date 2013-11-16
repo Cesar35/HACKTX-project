@@ -36,7 +36,7 @@ public class Categorylist extends ListActivity {
 		ebaycategories temp = new ebaycategories(this.getApplicationContext());
 		try {
 			EbayParser parser = new EbayParser(this.getApplicationContext());
-			Log.d("JJJJJJJ", temp.getCategories());
+			//Log.d("JJJJJJJ", temp.getCategories());
 			categories = parser.parseCategories(temp.getCategories());
 		} catch (Exception e) {
 			Log.d("HELLL", "djkfjlsdkfjslkdjf");
@@ -65,9 +65,10 @@ public class Categorylist extends ListActivity {
 	
 	private void setAdapter() {
 		catnames = new ArrayList<String>();
-//		for(int i = 1; i < categories.size(); ++i){
-//			String tttt = categories.get(i).CategoryName;
-//		}
+		for(int i = 1; i < categories.size(); ++i){
+			String tttt = categories.get(i).CategoryName;
+			catnames.add(tttt);
+		}
         adapter = new ArrayAdapter<String>(this, R.layout.list_item, catnames);
         setListAdapter(adapter);
     }
