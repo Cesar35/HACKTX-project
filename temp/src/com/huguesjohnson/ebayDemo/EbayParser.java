@@ -28,6 +28,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.estumble.backend.Product;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.Log;
@@ -98,6 +100,29 @@ public class EbayParser{
 				Listing listing=this.parseListing(itemList.getJSONObject(itemIndex));
 				listing.setAuctionSource(this.resources.getString(R.string.ebay_source_name));
 				listings.add(listing);
+			}catch(JSONException jx){
+				/* if something goes wrong log & move to the next item */
+				Log.e(TAG,"parseListings: jsonResponse="+jsonResponse,jx);
+			}
+		}
+		return(listings);
+	}
+	
+	public ArrayList<Product> parseProduct(String jsonResponse) throws Exception{
+		ArrayList<Product> listings=new ArrayList<Product>();
+		JSONObject rootObj=new JSONObject(jsonResponse);
+		JSONArray itemList=rootObj
+			.getJSONArray(this.resources.getString(R.string.ebay_request_find_items_by_category))
+			.getJSONObject(0)
+			.getJSONArray(this.resources.getString(R.string.ebay_tag_searchResult))
+			.getJSONObject(0)
+			.getJSONArray(this.resources.getString(R.string.ebay_tag_item));
+		int itemCount=itemList.length();
+		for(int itemIndex=0;itemIndex<itemCount;itemIndex++){
+			try{
+				Listing listing=this.parseListing(itemList.getJSONObject(itemIndex));
+				listing.setAuctionSource(this.resources.getString(R.string.ebay_source_name));
+				listings.add(new Product(listing));
 			}catch(JSONException jx){
 				/* if something goes wrong log & move to the next item */
 				Log.e(TAG,"parseListings: jsonResponse="+jsonResponse,jx);
