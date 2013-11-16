@@ -65,7 +65,12 @@ public class EbayInvoke{
 		}
 		return(jsonResponse);
 	}
-	
+	/*
+	public String getCategory(String id) throws Exception
+	{
+		return (new ebaylistings(null).getListings(0, id));
+	}
+	*/
 	private String getRequestURL(String keyword){
 		CharSequence requestURL=TextUtils.expandTemplate(this.resources.getString(R.string.ebay_request_template),ebayURL,appID,keyword);
 		return(requestURL.toString());

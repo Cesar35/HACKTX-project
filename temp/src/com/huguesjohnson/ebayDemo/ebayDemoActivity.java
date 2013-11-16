@@ -46,7 +46,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class ebayDemoActivity extends ListActivity{
 	private final static String TAG="ebayDemoActivity";
-	private static EbayInvoke ebayInvoke;
+	private static ebaylistings ebayInvoke;
 	private static EbayParser ebayParser;
 	private static ProgressDialog progressDialog;
 	private String searchTerm="phantasy+star+3"; //intial value for demo
@@ -305,15 +305,18 @@ public class ebayDemoActivity extends ListActivity{
         		Log.d("hello", temp2);
         		
         		if(ebayInvoke==null){
-        			ebayInvoke=new EbayInvoke(this.context);
+        			ebayInvoke=new ebaylistings(this.context);//new EbayInvoke(this.context);
         		}
         		if(ebayParser==null){
         			ebayParser=new EbayParser(this.context);
         		}
-           		searchResponse=ebayInvoke.search(searchTerm);
+           		//searchResponse=ebayInvoke.search(searchTerm);
+        		searchResponse = ebayInvoke.getListings("1",getIntent().getStringExtra("id"));
+        		//String s = ebayDemoActivity.this;
            		if(listings==null){
            			listings=new SearchResult();
            		}
+           		Log.d("response", searchResponse);
         		listings.setListings(ebayParser.parseListings(searchResponse));
             	this.handler.sendEmptyMessage(RESULT_OK);
         	}catch(Exception x){
