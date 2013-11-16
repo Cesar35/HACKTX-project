@@ -39,4 +39,9 @@
     <string name="ebay_value_storeinventory">StoreInventory</string>
     <string name="ebay_value_fixedprice">StoreInventory</string>
     <string name="ebay_value_true">true</string>
+    <string name="ebay_tag_item_primaryCategory">primaryCategory</string>
+    <string name="ebay_tag_item_secondaryCategory">secondaryCategory</string>
+    <string name="ebay_tag_item_categoryID">categoryId</string>
+    <string name="ebay_tag_item_categoryName">categoryName</string>
+    
 </resources>

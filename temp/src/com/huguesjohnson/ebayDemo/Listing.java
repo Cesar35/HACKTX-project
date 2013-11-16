@@ -35,6 +35,8 @@ public class Listing implements Comparable<Listing>{
 	private Date endTime;
 	private boolean auction;
 	private boolean buyItNow;
+	private String primaryCategoryID;
+	private String secondaryCategoryID;
 
 	public String getId(){
 		return id;
@@ -120,5 +122,29 @@ public class Listing implements Comparable<Listing>{
 	@Override
 	public int compareTo(Listing another){
 		return(another.startTime.compareTo(this.startTime));
+	}
+	/**
+	 * @return the primaryCategory
+	 */
+	public String getPrimaryCategoryID() {
+		return primaryCategoryID;
+	}
+	/**
+	 * @param primaryCategory the primaryCategory to set
+	 */
+	public void setPrimaryCategoryID(String primaryCategory) {
+		this.primaryCategoryID = primaryCategoryID;
+	}
+	/**
+	 * @return the secondaryCategoryID
+	 */
+	public String getSecondaryCategoryID() {
+		return secondaryCategoryID;
+	}
+	/**
+	 * @param secondaryCategoryID the secondaryCategoryID to set
+	 */
+	public void setSecondaryCategoryID(String secondaryCategoryID) {
+		this.secondaryCategoryID = secondaryCategoryID;
 	}
 }

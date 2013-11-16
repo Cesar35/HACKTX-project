@@ -37,7 +37,7 @@ public class Categorylist extends ListActivity {
 		try {
 			EbayParser parser = new EbayParser(this.getApplicationContext());
 			Log.d("JJJJJJJ", temp.getCategories());
-			categories = parser.parseCategorys(temp.getCategories());
+			categories = parser.parseCategories(temp.getCategories());
 		} catch (Exception e) {
 			Log.d("HELLL", "djkfjlsdkfjslkdjf");
 			e.printStackTrace();
