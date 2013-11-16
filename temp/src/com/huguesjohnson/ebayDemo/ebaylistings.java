@@ -39,12 +39,12 @@ public class ebaylistings {
 		}
 	}
 	
-	private String getRequestURL(int pageNum, int categoryNum){
-		CharSequence requestURL=TextUtils.expandTemplate(this.resources.getString(R.string.ebay_request_find_items_by_category),ebayURL,appID);
+	private String getRequestURL(String pageNum, String categoryNum){
+		CharSequence requestURL=TextUtils.expandTemplate(this.resources.getString(R.string.ebay_request_find_items_by_category),ebayURL,appID,categoryNum,pageNum);
 		return(requestURL.toString());
 	}
 	
-	public String getListings(int pageNum, int categoryNum) throws Exception{
+	public String getListings(String pageNum, String categoryNum) throws Exception{
 		String result=null;
 		HttpClient httpClient=new DefaultHttpClient();  
 		HttpGet httpGet=new HttpGet(this.getRequestURL(pageNum, categoryNum));  
