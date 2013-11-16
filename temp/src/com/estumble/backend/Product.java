@@ -98,5 +98,10 @@ public class Product {
 	{
 		return this.listing;
 	}
+
+	public void removeCategory(Category category) {
+		this.categories.remove(category);
+		
+	}
 	
 }

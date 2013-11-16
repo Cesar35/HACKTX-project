@@ -59,7 +59,8 @@ public class EbayParser{
 		for(int itemIndex=0;itemIndex<categoryCount;itemIndex++){
 			try{
 				Category category = this.parseCategory(categoryList.getJSONObject(itemIndex));
-				categories.add(category);
+				if(category != null)
+					categories.add(category);
 			}catch(JSONException jx){
 				/* if something goes wrong log & move to the next item */
 				Log.e(TAG,"parseListings: jsonResponse="+jsonResponse,jx);
@@ -126,6 +127,29 @@ public class EbayParser{
 			Log.e(TAG,"parseListing: parsing image URL",jx);
 			listing.setImageUrl(null);
 		}
+		//Get primaryCategoryID
+		try
+		{
+			JSONObject primaryCategoryID = jsonObj.getJSONArray(this.resources.getString(R.string.ebay_tag_item_primaryCategory))
+					.getJSONObject(0);
+			listing.setPrimaryCategoryID(this.stripWrapper(primaryCategoryID.getString(this.resources.getString(R.string.ebay_tag_item_categoryID))));
+		}catch(JSONException jx)
+		{
+			Log.e(TAG,"parseListing: parsing primaryCategoryID",jx);
+			listing.setPrimaryCategoryID(null);
+		}
+		
+		try
+		{
+			JSONObject secondaryCategoryID = jsonObj.getJSONArray(this.resources.getString(R.string.ebay_tag_item_secondaryCategory))
+					.getJSONObject(0);
+			listing.setSecondaryCategoryID(this.stripWrapper(secondaryCategoryID.getString(this.resources.getString(R.string.ebay_tag_item_categoryID))));
+		}catch(JSONException jx)
+		{
+			Log.e(TAG,"parseListing: parsing primaryCategoryID",jx);
+			listing.setSecondaryCategoryID(null);
+		}
+		
 		try{
 			listing.setLocation(this.stripWrapper(jsonObj.getString(this.resources.getString(R.string.ebay_tag_location))));
 		}catch(JSONException jx){
