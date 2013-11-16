@@ -13,40 +13,20 @@ enum ProductLikeStatus
 	DISLIKED;
 }
 
-public class Product {
+public class Product extends Listing {
 	private ProductLikeStatus likeStatus;
 	
-	private final Listing listing;
-	
-	private final String name;
-	private final String description;
+	/*private final String name;
+	private final String description;*/
 	private final ArrayList<Keyword> keywords;
 	private final ArrayList<Category> categories;
 	
-	public Product(Listing listing)
-	{
-		this.name = listing.getTitle();
-		this.description = "GENERIC DESCRIPTION DAWG";
-		this.listing = listing;
-		this.keywords = new ArrayList<Keyword>();
-		this.categories = new ArrayList<Category>();
-	}
-	
 	public Product(String name, String description)
 	{
-		this.name = name;
-		this.description = description;
+		//this.name = name;
+		//this.description = description; 
 		this.keywords = new ArrayList<Keyword>();
 		this.categories = new ArrayList<Category>();
-		this.listing = null;
-	}
-
-	public String getImageURL() {
-		return this.listing.getImageUrl();
-	}
-
-	public void setImageURL(String imageURL) {
-		this.listing.setImageUrl(imageURL);
 	}
 	
 	public boolean addKeyword(String s)
@@ -92,11 +72,6 @@ public class Product {
 		{
 			k.decreaseStanding();
 		}
-	}
-	
-	public Listing getListing()
-	{
-		return this.listing;
 	}
 
 	public void removeCategory(Category category) {

@@ -62,4 +62,24 @@
     android:linksClickable="true" 
     android:autoLink="web">
   </TextView>
+  <LinearLayout
+  android:orientation="horizontal"
+  android:id="@+id/listingdetaildialog_buttons" 
+  android:layout_height="fill_parent" 
+  android:layout_width="fill_parent">
+  <Button
+      android:id="@+id/listingdetail_like"
+      android:layout_width="wrap_content" 
+      android:layout_height="wrap_content"
+      android:textSize="12sp" 
+      android:text="Love" 
+      android:onClick="loveClick"/>
+   <Button
+     android:id="@+id/listingdetail_dislike"
+     android:layout_width="wrap_content" 
+     android:layout_height="wrap_content"
+     android:textSize="12sp" 
+     android:text="Hate"
+     android:onClick="hateClick"/>
+  </LinearLayout>
 </LinearLayout>

@@ -27,24 +27,27 @@ public final class R {
     public static final class id {
         public static final int countryTextView=0x7f070000;
         public static final int listingdetail_auctionsource=0x7f070003;
+        public static final int listingdetail_dislike=0x7f07000d;
         public static final int listingdetail_endtime=0x7f070005;
         public static final int listingdetail_image=0x7f070002;
+        public static final int listingdetail_like=0x7f07000c;
         public static final int listingdetail_link=0x7f07000a;
         public static final int listingdetail_listingtype=0x7f070007;
         public static final int listingdetail_location=0x7f070009;
         public static final int listingdetail_price=0x7f070006;
         public static final int listingdetail_shipping=0x7f070008;
         public static final int listingdetail_starttime=0x7f070004;
+        public static final int listingdetaildialog_buttons=0x7f07000b;
         public static final int listingdetaildialog_root=0x7f070001;
-        public static final int listviewitem_image=0x7f07000c;
-        public static final int listviewitem_linearlayout=0x7f07000d;
-        public static final int listviewitem_price=0x7f07000f;
-        public static final int listviewitem_root=0x7f07000b;
-        public static final int listviewitem_shipping=0x7f070010;
-        public static final int listviewitem_title=0x7f07000e;
-        public static final int searchdialog_captiontextview=0x7f070012;
-        public static final int searchdialog_keyword=0x7f070013;
-        public static final int searchdialog_root=0x7f070011;
+        public static final int listviewitem_image=0x7f07000f;
+        public static final int listviewitem_linearlayout=0x7f070010;
+        public static final int listviewitem_price=0x7f070012;
+        public static final int listviewitem_root=0x7f07000e;
+        public static final int listviewitem_shipping=0x7f070013;
+        public static final int listviewitem_title=0x7f070011;
+        public static final int searchdialog_captiontextview=0x7f070015;
+        public static final int searchdialog_keyword=0x7f070016;
+        public static final int searchdialog_root=0x7f070014;
     }
     public static final class layout {
         public static final int activity_categorylist=0x7f030000;

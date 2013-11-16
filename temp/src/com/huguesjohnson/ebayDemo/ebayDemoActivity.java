@@ -23,6 +23,7 @@ import java.util.ArrayList;
 
 import com.estumble.backend.Product;
 
+import android.R.color;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -30,6 +31,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
+import android.graphics.Color;
+import android.graphics.LightingColorFilter;
+import android.graphics.PorterDuff.Mode;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,6 +46,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -69,6 +74,9 @@ public class ebayDemoActivity extends ListActivity{
 	private TextView textViewShipping;
 	private TextView textViewLocation;
 	private TextView textViewLink;
+	private Button likeButton;
+	private Button hateButton;
+	private View theLayout;
 	//filter dialog
 	private AlertDialog keywordDialog;
 	private EditText keywordTextbox;
@@ -156,8 +164,15 @@ public class ebayDemoActivity extends ListActivity{
 	
 	OnClickListener onListingDetailDialogCloseListener=new OnClickListener(){
 		@Override
-		public void onClick(DialogInterface dialog,int which){/*not implemented*/}
-	};	
+		public void onClick(DialogInterface dialog,int which){
+			LayoutInflater inflater=(LayoutInflater)ebayDemoActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
+			View layout=theLayout;
+			Button q = (Button)layout.findViewById(R.id.listingdetail_like);
+			q.getBackground().setColorFilter(null);
+			q = (Button)layout.findViewById(R.id.listingdetail_dislike);
+			q.getBackground().setColorFilter(null);
+		} 
+	};
 
 	
 	OnClickListener onKeywordDialogPositiveListener=new OnClickListener(){
@@ -178,7 +193,8 @@ public class ebayDemoActivity extends ListActivity{
 			//create the listing detail dialog
 			if(this.listingDetailDialog==null){
 				LayoutInflater inflater=(LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
-				View layout=inflater.inflate(R.layout.listingdetail,(ViewGroup)findViewById(R.id.listingdetaildialog_root));
+				theLayout=inflater.inflate(R.layout.listingdetail,(ViewGroup)findViewById(R.id.listingdetaildialog_root));
+				View layout = theLayout;
 				AlertDialog.Builder builder=new AlertDialog.Builder(this);
 				builder.setView(layout);
 				builder.setTitle(this.selectedListing.getTitle());
@@ -242,8 +258,8 @@ public class ebayDemoActivity extends ListActivity{
 	   		.show();	
 		}catch(Exception reallyBadTimes){
 			Log.e(TAG,"showErrorDialog",reallyBadTimes);
-		}
-	} 
+		} 
+	}  
 	
 	//handle user clicks on listitems and URLs
 	
@@ -259,6 +275,19 @@ public class ebayDemoActivity extends ListActivity{
 			}
 		}
 	};
+	private boolean liked; 
+	
+	
+	public void loveClick(View v){
+		theLayout.findViewById(R.id.listingdetail_dislike).getBackground().clearColorFilter();
+		v.getBackground().setColorFilter(Color.GREEN, Mode.MULTIPLY);
+		Log.d("ID:",""+v.getId());
+	}
+	
+	public void hateClick(View v){
+		theLayout.findViewById(R.id.listingdetail_like).getBackground().clearColorFilter();
+		v.getBackground().setColorFilter(Color.RED, Mode.MULTIPLY);
+	}
 	
 	View.OnClickListener urlClickedListener=new View.OnClickListener(){
 		@Override
@@ -325,10 +354,9 @@ public class ebayDemoActivity extends ListActivity{
            		} 
            		Log.d("response", searchResponse);
            		ArrayList<Product> pp = ebayParser.parseProduct(searchResponse);
-           		ArrayList<Listing> a = new ArrayList<Listing>();
-           		for(Product p : pp)
-           			a.add(p.getListing());
-        		listings.setListings(a);
+           		ArrayList<Listing> q = new ArrayList<Listing>();
+           		q.addAll(pp);
+        		listings.setListings(q);
             	this.handler.sendEmptyMessage(RESULT_OK);
         	}catch(Exception x){
     			Log.e(TAG,"LoadListThread.run(): searchResponse="+searchResponse,x);

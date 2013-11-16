@@ -122,7 +122,7 @@ public class EbayParser{
 			try{
 				Listing listing=this.parseListing(itemList.getJSONObject(itemIndex));
 				listing.setAuctionSource(this.resources.getString(R.string.ebay_source_name));
-				listings.add(new Product(listing));
+				listings.add((Product)listing);
 			}catch(JSONException jx){
 				/* if something goes wrong log & move to the next item */
 				Log.e(TAG,"parseListings: jsonResponse="+jsonResponse,jx);
@@ -136,7 +136,7 @@ public class EbayParser{
 		 * Things outside of a try/catch block are fields that are required and should throw an exception if not found
 		 * Things inside of a try/catch block are fields we can live without
 		 */
-		Listing listing=new Listing();
+		Listing listing=new Product(null,null);
 		/* get items at the root of the object
 		 * id, title, and URL are required
 		 * image and location are optional */
@@ -148,7 +148,7 @@ public class EbayParser{
 		}catch(JSONException jx){
 			Log.e(TAG,"parseListing: parsing image URL",jx);
 			listing.setImageUrl(null);
-		}
+		} 
 		//Get primaryCategoryID
 		try
 		{
