@@ -47,8 +47,8 @@ public class Categorylist extends ListActivity {
 		
 		view.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-            	Log.d("ID tag ", ""+position);
             	Intent i = new Intent(Categorylist.this, ebayDemoActivity.class);
+            	i.putExtra("id", categories.get(position).CategoryID);
             	startActivity(i);
               
             }
