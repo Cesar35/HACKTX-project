@@ -39,7 +39,7 @@ public class Categorylist extends ListActivity {
 			categories = parser.parseCategories(temp.getCategories());
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		} 
 		
 		
 		view = getListView();
@@ -48,7 +48,7 @@ public class Categorylist extends ListActivity {
 		view.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
             	Intent i = new Intent(Categorylist.this, ebayDemoActivity.class);
-            	i.putExtra("id", categories.get(position).CategoryID);
+            	i.putExtra("id", categories.get(position+1).CategoryID);
             	startActivity(i);
               
             }

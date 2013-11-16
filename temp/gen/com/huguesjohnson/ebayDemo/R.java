@@ -55,8 +55,8 @@ public final class R {
         public static final int searchdialog=0x7f030005;
     }
     public static final class string {
-        public static final int action_settings=0x7f050030;
-        public static final int app_name=0x7f05002e;
+        public static final int action_settings=0x7f050031;
+        public static final int app_name=0x7f05002f;
         public static final int ebay_appid_production=0x7f050005;
         public static final int ebay_appid_sandbox=0x7f050004;
         public static final int ebay_open_api=0x7f050008;
@@ -76,6 +76,7 @@ public final class R {
         public static final int ebay_tag_currencyId=0x7f05001c;
         public static final int ebay_tag_currentPrice=0x7f05001a;
         public static final int ebay_tag_endTime=0x7f050023;
+        public static final int ebay_tag_findItemsByCategoryResponse=0x7f05002c;
         public static final int ebay_tag_findItemsByKeywordsResponse=0x7f050012;
         public static final int ebay_tag_galleryURL=0x7f050016;
         public static final int ebay_tag_item=0x7f050013;
@@ -101,9 +102,9 @@ public final class R {
         public static final int ebay_value_true=0x7f050027;
         public static final int ebay_wsurl_production=0x7f050007;
         public static final int ebay_wsurl_sandbox=0x7f050006;
-        public static final int hello=0x7f05002d;
-        public static final int searchdialog_caption=0x7f05002c;
-        public static final int title_activity_categorylist=0x7f05002f;
+        public static final int hello=0x7f05002e;
+        public static final int searchdialog_caption=0x7f05002d;
+        public static final int title_activity_categorylist=0x7f050030;
     }
     public static final class style {
         /** 

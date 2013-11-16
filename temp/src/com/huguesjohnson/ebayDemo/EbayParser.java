@@ -112,7 +112,7 @@ public class EbayParser{
 		ArrayList<Product> listings=new ArrayList<Product>();
 		JSONObject rootObj=new JSONObject(jsonResponse);
 		JSONArray itemList=rootObj
-			.getJSONArray(this.resources.getString(R.string.ebay_request_find_items_by_category))
+			.getJSONArray(this.resources.getString(R.string.ebay_tag_findItemsByCategoryResponse))
 			.getJSONObject(0)
 			.getJSONArray(this.resources.getString(R.string.ebay_tag_searchResult))
 			.getJSONObject(0)
@@ -168,7 +168,7 @@ public class EbayParser{
 			listing.setSecondaryCategoryID(this.stripWrapper(secondaryCategoryID.getString(this.resources.getString(R.string.ebay_tag_item_categoryID))));
 		}catch(JSONException jx)
 		{
-			Log.e(TAG,"parseListing: parsing primaryCategoryID",jx);
+			Log.e(TAG,"parseListing: parsing secondaryCategoryID",jx);
 			listing.setSecondaryCategoryID(null);
 		}
 		

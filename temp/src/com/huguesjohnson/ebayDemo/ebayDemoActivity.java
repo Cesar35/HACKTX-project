@@ -19,6 +19,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 package com.huguesjohnson.ebayDemo;
 
+import java.util.ArrayList;
+
+import com.estumble.backend.Product;
+
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -50,6 +54,7 @@ public class ebayDemoActivity extends ListActivity{
 	private static EbayParser ebayParser;
 	private static ProgressDialog progressDialog;
 	private String searchTerm="phantasy+star+3"; //intial value for demo
+	private String categoryTerm;
 	private SearchResult listings;
 	private ListingArrayAdapter adapter;
 	private Listing selectedListing;
@@ -310,14 +315,20 @@ public class ebayDemoActivity extends ListActivity{
         		if(ebayParser==null){
         			ebayParser=new EbayParser(this.context);
         		}
+        		categoryTerm = getIntent().getStringExtra("id");
+           		searchResponse=ebayInvoke.search(categoryTerm,"1");
            		//searchResponse=ebayInvoke.search(searchTerm);
-        		searchResponse = ebayInvoke.getListings("1",getIntent().getStringExtra("id"));
+        		//searchResponse = ebayInvoke.getListings("1",categoryTerm);
         		//String s = ebayDemoActivity.this;
            		if(listings==null){
            			listings=new SearchResult();
-           		}
+           		} 
            		Log.d("response", searchResponse);
-        		listings.setListings(ebayParser.parseListings(searchResponse));
+           		ArrayList<Product> pp = ebayParser.parseProduct(searchResponse);
+           		ArrayList<Listing> a = new ArrayList<Listing>();
+           		for(Product p : pp)
+           			a.add(p.getListing());
+        		listings.setListings(a);
             	this.handler.sendEmptyMessage(RESULT_OK);
         	}catch(Exception x){
     			Log.e(TAG,"LoadListThread.run(): searchResponse="+searchResponse,x);
