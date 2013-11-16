@@ -300,6 +300,10 @@ public class ebayDemoActivity extends ListActivity{
         public void run(){
         	String searchResponse="";
         	try{
+        		ebaycategories temp = new ebaycategories(this.context);
+        		String temp2 = temp.getCategories();
+        		Log.d("hello", temp2);
+        		
         		if(ebayInvoke==null){
         			ebayInvoke=new EbayInvoke(this.context);
         		}
