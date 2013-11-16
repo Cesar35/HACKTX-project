@@ -68,7 +68,7 @@ public class ebayDemoActivity extends ListActivity{
 	private AlertDialog keywordDialog;
 	private EditText keywordTextbox;
 	//menu constants
-	private final static int MENU_KEYWORD=0;
+	private final static int MENU_CATEGORY=0;
 	private final static int MENU_QUIT=1;
 
 	//basic activity stuff
@@ -88,7 +88,7 @@ public class ebayDemoActivity extends ListActivity{
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
 		try{
-			menu.add(0,MENU_KEYWORD,0,"Search Term");
+			menu.add(0,MENU_CATEGORY,0,"Select Category");
 			menu.add(0,MENU_QUIT,1,"Quit");
 			return(true);
 		}catch(Exception x){
@@ -101,7 +101,7 @@ public class ebayDemoActivity extends ListActivity{
 	public boolean onOptionsItemSelected(MenuItem item){
 		try{
 			switch(item.getItemId()){
-			case MENU_KEYWORD:{this.showKeywordDialog();return(true);}
+			case MENU_CATEGORY:{this.showCategoryList();return(true);}  //Show app categories!
 			case MENU_QUIT:{this.finish();return(true);}
 			default:{return(false);}
 			}
@@ -127,7 +127,7 @@ public class ebayDemoActivity extends ListActivity{
 		public void onClick(DialogInterface dialog,int which){/*not implemented*/}
 	};
 
-	private void showKeywordDialog(){
+	private void showCategoryList(){
 		try{
 			//create the dialog
 			if(this.keywordDialog==null){

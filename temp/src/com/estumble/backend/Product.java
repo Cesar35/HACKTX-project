@@ -2,6 +2,8 @@ package com.estumble.backend;
 
 import java.util.ArrayList;
 
+import com.huguesjohnson.ebayDemo.Category;
+
 public class Product {
 	private boolean liked;
 	private boolean disliked;

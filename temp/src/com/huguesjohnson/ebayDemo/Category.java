@@ -1,6 +1,8 @@
-package com.estumble.backend;
+package com.huguesjohnson.ebayDemo;
 
 import java.util.ArrayList;
+
+import com.estumble.backend.Product;
 
 public class Category {
 	public final String name;
