@@ -8,8 +8,16 @@
     <string name="ebay_wsurl_sandbox">http://sandbox.ebay.com/</string>
     <string name="ebay_wsurl_production">http://svcs.ebay.com/</string>
     <string name="ebay_open_api">http://open.api.ebay.com/</string>
-    <string name="ebay_tag_findItemsByKeywordsResponse">findItemsByKeywordsResponse</string>
+    <string name="ebay_tag_GetCategoryInfoResponse">GetCategoryInfoResponse</string>
+    <string name="ebay_tag_CategoryArray">CategoryArray</string>
+    <string name="ebay_tag_Category">Category</string>
+    <string name="ebay_tag_CategoryName">CategoryName</string>
+    <string name="ebay_tag_CategoryID">CategoryID</string>
+    <string name="ebay_tag_CategoryLevel">CategoryLevel</string>
+    <string name="ebay_tag_CategoryParentID">CategoryParentID</string>
+    <string name="ebay_tag_LeafCategory">LeafCategory</string>
     <string name="ebay_tag_searchResult">searchResult</string>
+    <string name="ebay_tag_findItemsByKeywordsResponse">findItemsByKeywordsResponse</string>
     <string name="ebay_tag_item">item</string>
     <string name="ebay_tag_itemId">itemId</string>
     <string name="ebay_tag_title">title</string>

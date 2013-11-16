@@ -1,42 +1,42 @@
 package com.huguesjohnson.ebayDemo;
 
-import java.util.ArrayList;
-
-import com.estumble.backend.Product;
 
 public class Category {
-	public final String name;
+	public String CategoryName;
+	public String CategoryID;
+	public String CategoryLevel;
+	public String CategoryParentID;
+	public String LeafCategory;
 	
-	public final ArrayList<Product> products;
-	public final ArrayList<Category> subCategories;
-	public Category parent;
-	
-	
-	public Category(String s)
-	{
-		this(s,null);
+	public String getCategoryName() {
+		return CategoryName;
 	}
-	
-	public Category(String n,Category p){
-		this.name = n;
-		this.products = new ArrayList<Product>();
-		this.subCategories = new ArrayList<Category>();
-		parent = p;
+	public void setCategoryName(String categoryName) {
+		CategoryName = categoryName;
 	}
-	
-	public boolean addProduct(Product p)
-	{
-		return this.products.add(p);
+	public String getCategoryID() {
+		return CategoryID;
 	}
-	
-	public boolean addCategory(Category sub)
-	{
-		return subCategories.add(sub);
+	public void setCategoryID(String categoryID) {
+		CategoryID = categoryID;
 	}
-	
-	public void setParent(Category p)
-	{
-		this.parent = p;
+	public String getCategoryLevel() {
+		return CategoryLevel;
+	}
+	public void setCategoryLevel(String categoryLevel) {
+		CategoryLevel = categoryLevel;
+	}
+	public String getCategoryParentID() {
+		return CategoryParentID;
+	}
+	public void setCategoryParentID(String categoryParentID) {
+		CategoryParentID = categoryParentID;
+	}
+	public String getLeafCategory() {
+		return LeafCategory;
+	}
+	public void setLeafCategory(String leafCategory) {
+		LeafCategory = leafCategory;
 	}
 	
 }

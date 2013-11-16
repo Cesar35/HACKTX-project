@@ -46,6 +46,44 @@ public class EbayParser{
 		this.resources=context.getResources();
 	}
 	
+	public ArrayList<Category> parseCategorys(String jsonResponse) throws Exception{
+		ArrayList<Category> categories=new ArrayList<Category>();
+		JSONObject rootObj=new JSONObject(jsonResponse);
+		JSONArray categoryList=rootObj
+			.getJSONArray(this.resources.getString(R.string.ebay_tag_GetCategoryInfoResponse))
+			.getJSONObject(0)
+			.getJSONArray(this.resources.getString(R.string.ebay_tag_CategoryArray))
+			.getJSONObject(0)
+			.getJSONArray(this.resources.getString(R.string.ebay_tag_Category));
+		int categoryCount=categoryList.length();
+		for(int itemIndex=0;itemIndex<categoryCount;itemIndex++){
+			try{
+				Category category = this.parseCategory(categoryList.getJSONObject(itemIndex));
+				categories.add(category);
+			}catch(JSONException jx){
+				/* if something goes wrong log & move to the next item */
+				Log.e(TAG,"parseListings: jsonResponse="+jsonResponse,jx);
+			}
+		}
+		return(categories);
+	}
+	
+	public Category parseCategory(JSONObject jsonObj) throws JSONException{
+		Category category = new Category();
+		try {
+			category.setCategoryName(jsonObj.getString(this.resources.getString(R.string.ebay_tag_CategoryName)));
+			category.setCategoryID(jsonObj.getString(this.resources.getString(R.string.ebay_tag_CategoryID)));
+			category.setCategoryParentID(jsonObj.getString(this.resources.getString(R.string.ebay_tag_CategoryParentID)));
+			category.setCategoryLevel(jsonObj.getString(this.resources.getString(R.string.ebay_tag_CategoryLevel)));
+			category.setLeafCategory(jsonObj.getString(this.resources.getString(R.string.ebay_tag_LeafCategory)));
+		}
+		catch(JSONException jx){
+			/* if something goes wrong log & move to the next item */
+			Log.e(TAG,"Category parsing failed");
+		}
+		return category;
+	}
+	
 	public ArrayList<Listing> parseListings(String jsonResponse) throws Exception{
 		ArrayList<Listing> listings=new ArrayList<Listing>();
 		JSONObject rootObj=new JSONObject(jsonResponse);
